@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Form from "./components/form";
+import CardList from "./components/cardList";
 
 function App() {
+  const [list, setList] = useState([]);
+
+  const getData = (data) => {
+    setList([{ data, id: Math.round(Math.random() * 1000) }, ...list]);
+  };
+  const deleteItem = (id) => {
+    setList(list.filter((item) => item.id !== id));
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Form listData={getData} />
+      <CardList listData={list} deleteItem={deleteItem} />
+    </>
   );
 }
 
