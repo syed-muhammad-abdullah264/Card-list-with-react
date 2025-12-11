@@ -1,5 +1,5 @@
 import "./index.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Form = (props) => {
   const [data, setData] = useState({
@@ -7,6 +7,12 @@ const Form = (props) => {
     price: "",
     date: "",
   });
+  
+  useEffect(() => {
+    if (props.editingItem) {
+      setData(props.editingItem.data);
+    }
+  }, [props.editingItem]);
   const handleChange = (e) => {
     setData({
       ...data,
@@ -58,7 +64,7 @@ const Form = (props) => {
         max="2025-12-31"
         onChange={handleChange}
       />
-      <button type="submit">Add Expense</button>
+      <button type="submit">{props.editingItem ? "Update Expense" : "Add Expense"}</button>
     </form>
   );
 };
