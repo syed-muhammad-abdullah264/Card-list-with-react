@@ -14,16 +14,16 @@ const CardList = ({ listData, deleteItem, editItem }) => {
           <p>Date: {item.data.date}</p>
           <div className={styles.buttonGroup}>
             <button
-              onClick={() => deleteItem(item.id)}
-              className={styles.deleteBtn}
-            >
-              Delete
-            </button>
-            <button
               onClick={() => editItem(item.id)}
               className={styles.editBtn}
             >
               Edit
+            </button>
+            <button
+              onClick={() => deleteItem(item.id)}
+              className={styles.deleteBtn}
+            >
+              Delete
             </button>
           </div>
         </div>
